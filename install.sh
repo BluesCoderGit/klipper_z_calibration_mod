@@ -18,7 +18,13 @@ check_klipper()
 copy_extension()
 {
     echo "Copying extension to Klipper..."
-    cp "${SRCDIR}/z_calibration.py" "${KLIPPER_PATH}/klippy/extras/z_calibration.py"
+    cp -f "${SRCDIR}/z_calibration.py" "${KLIPPER_PATH}/klippy/extras/z_calibration.py"
+    cp -f "${SRCDIR}/homing.py" "${KLIPPER_PATH}/klippy/extras/homing.py"
+    cp -f "${SRCDIR}/endstop_phase.py" "${KLIPPER_PATH}/klippy/extras/endstop_phase.py"
+    cp -f "${SRCDIR}/bltouch.py" "${KLIPPER_PATH}/klippy/extras/bltouch.py"
+    
+    cp -f "${SRCDIR}/mcu.py" "${KLIPPER_PATH}/klippy/mcu.py"
+    cp -f "${SRCDIR}/stepper.py" "${KLIPPER_PATH}/klippy/stepper.py"
 }
 
 # Step 3: Install startup script
