@@ -109,7 +109,11 @@ class ZCalibrationHelper:
         # get z homing position
         for rail in rails:
             if rail.get_steppers()[0].is_active_axis('z'):
-                kin_spos = homing_state.get_stepper_trigger_positions()
+                kin = self.printer.lookup_object('toolhead').get_kinematics()
+                kin_spos = {s.get_name(): (s.get_commanded_position()
+                                           + homing_state.get_adjust_positions().get(s.get_name(), 0.))
+                            for s in kin.get_steppers()}
+                kin_spos = dict(kin_spos)
                 self.z_homing = kin_spos.get(rail.get_name())
                 # get homing settings from z rail
                 if self.probing_speed is None:
